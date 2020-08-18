@@ -14,6 +14,8 @@ This service listen on port 3060 and forward requests (/paragon, /command and /f
 This service has to be installed via npm:
 
 ```
+git clone https://github.com/bigdotsoftware/posnetserver-async-proxy.git
+cd posnetserver-async-proxy
 npm install
 ```
 ## Configuration
