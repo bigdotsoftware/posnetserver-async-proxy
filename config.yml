@@ -1,0 +1,18 @@
+default:
+  http:
+    port: 3060
+  https:
+    active: false
+    port: 3061
+    sslcertificates:
+      key: "./cert/server.key"
+      crt: "./cert/server.crt"
+  posnetserver:
+    baseurl: "http://localhost:3050"
+    retry:
+      interval: 7000    # 7 seconds
+      times: 5          # retry up to 5 times
+  queue:
+    retention: 1800000  # 30 minutes
+  logging:
+    fulldebug: true
