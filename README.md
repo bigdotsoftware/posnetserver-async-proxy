@@ -1,4 +1,5 @@
 
+
 # Async Proxy for Posnet Server
 [![Known Vulnerabilities](https://snyk.io/test/github/bigdotsoftware/posnetserver-async-proxy/badge.svg?style=flat-square&maxAge=2592000)](https://snyk.io/test/github/bigdotsoftware/posnetserver-async-proxy)
 
@@ -8,6 +9,12 @@ https://blog.bigdotsoftware.pl/posnet-server-pierwsze-uzycie/
 ## Overview
 
 This service listen on port 3060 and forward requests (/paragon, /command and /faktura) into PosnetServer. Full information about available RESTpoints can be listed by executing [http://localhost:3060/](http://localhost:3060/)
+
+Implemented queue:
+
+ - is not persisted - requests in the queue won't survive service restart
+ - has no threshold nor safety switch
+ - every single request is executed in separate thread. Once finished, thread is dispatched (When you have 100 "in progress" requests, mean service executed 100 threads)
 
 ## Installation
 
