@@ -210,16 +210,16 @@ function processAsyncQueueSummary(req, res) {
             total: results.faktura.total
         },
         paragon: {
-            inprogress: results.faktura.inprogress,
-            success: results.faktura.success,
-            failed: results.faktura.failed,
-            total: results.faktura.total
+            inprogress: results.paragon.inprogress,
+            success: results.paragon.success,
+            failed: results.paragon.failed,
+            total: results.paragon.total
         },
         command: {
-            inprogress: results.faktura.inprogress,
-            success: results.faktura.success,
-            failed: results.faktura.failed,
-            total: results.faktura.total
+            inprogress: results.command.inprogress,
+            success: results.command.success,
+            failed: results.command.failed,
+            total: results.command.total
         }
     });
 };

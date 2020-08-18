@@ -28,7 +28,7 @@ function executeTask(transactionUUID, fulldebug) {
         workerone.on('message', (data) => {
             //console.log("message", data);
             const truuid = data.transactionUUID;
-            updateTransaction(truuid, data.stat);
+            updateTransaction(truuid, data.stat, data.took);
         })
 
         workerone.on('error', (err) => {
@@ -47,7 +47,7 @@ function executeTask(transactionUUID, fulldebug) {
 
 function createTransaction(restpoint, body) {
     const transactionUUID = uuid();
-    asyncTransactions[transactionUUID] = [{ payload: body, restpoint: restpoint, ts: new Date().getTime(), retries:[], inprogress: true, stat: null }];
+    asyncTransactions[transactionUUID] = [{ payload: body, restpoint: restpoint, ts: new Date().getTime(), retries: [], inprogress: true, stat: null, took: 0 }];
     return transactionUUID;
 }
 
@@ -60,9 +60,10 @@ function retryTransaction(transactionUUID) {
     return transactionUUID;
 }
 
-function updateTransaction(transactionUUID, stat) {
+function updateTransaction(transactionUUID, stat, took) {
     logger.logger.debug(`Updating transaction ${transactionUUID} by the stat: ${stat}`);
     asyncTransactions[transactionUUID][0].stat = stat;
+    asyncTransactions[transactionUUID][0].took = took;
     asyncTransactions[transactionUUID][0].inprogress = false;
 }
 

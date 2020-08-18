@@ -53,11 +53,13 @@ function ExecuteUrl(url, resultsurlmethod, body, parentPort) {
 
     async.retry({ times: config.posnetserver.retry.times, interval: config.posnetserver.retry.interval }, apiMethodWrapper, function (err, responseObj) {
         logger.logger.debug(`Transaction ${workerData.transactionUUID} is Done`);
+        const took = new Date().getTime() - tt_start;
         if (err) {
             logger.logger.error(`Transaction ${workerData.transactionUUID} failed : ${err}`);
             parentPort.postMessage({
                 transactionUUID: workerData.transactionUUID,
-                stat: { ok: false, message : err },
+                stat: { ok: false, message: err },
+                took: took,
                 status: 'Done'
             })
         } else {
@@ -65,6 +67,7 @@ function ExecuteUrl(url, resultsurlmethod, body, parentPort) {
             parentPort.postMessage({
                 transactionUUID: workerData.transactionUUID,
                 stat: responseObj,
+                took: took,
                 status: 'Done'
             })
         }
