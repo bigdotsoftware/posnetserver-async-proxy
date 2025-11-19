@@ -9,7 +9,7 @@
     "async": "^3.2.0",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "node-yaml-config": "0.0.6",
+    "node-yaml-config": "1.0.0",
     "parse-node-version": "^1.0.1",
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
